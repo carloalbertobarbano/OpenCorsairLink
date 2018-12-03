@@ -39,6 +39,7 @@ MAINLOGIC_SOURCE := \
 	device.c \
 	driver.c \
 	print.c \
+	rainbow.c \
 	logic/options.c \
 	logic/options_fan.c \
 	logic/options_led.c \
@@ -83,7 +84,7 @@ PROTOCOL_SOURCE := \
 
 HEADER := $(shell find ./include -name '*.h')
 
-EXECUTABLE := OpenCorsairLink.elf
+EXECUTABLE := GTXH100i_rainbow
 
 ####################################################################################################
 

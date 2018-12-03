@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
+//#include <time.h>
 
 int
 commanderpro_settings(
@@ -59,8 +61,9 @@ psu_settings(
     struct option_flags flags,
     struct option_parse_return settings );
 
-int
-main( int argc, char* argv[] )
+
+
+int main( int argc, char* argv[] )
 {
     int rr; // result from libusb functions
 
@@ -86,6 +89,7 @@ main( int argc, char* argv[] )
     corsairlink_device_scanner( context, &scanlist_count );
     msg_debug( "DEBUG: scan done, start routines\n" );
     msg_debug( "DEBUG: device_number = %d\n", device_number );
+    start_rainbow( scanlist[device_number], flags, settings );
 
     if ( device_number >= 0 )
     {
@@ -97,25 +101,9 @@ main( int argc, char* argv[] )
         }
         else
         {
-            if ( scanlist[device_number].device->driver == &corsairlink_driver_rmi )
+            if ( scanlist[device_number].device->driver == &corsairlink_driver_asetek )
             {
-                psu_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_commanderpro )
-            {
-                commanderpro_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_asetek )
-            {
-                hydro_asetek_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_asetekpro )
-            {
-                hydro_asetekpro_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_coolit )
-            {
-                hydro_coolit_settings( scanlist[device_number], flags, settings );
+                start_rainbow( scanlist[device_number], flags, settings );
             }
         }
     }

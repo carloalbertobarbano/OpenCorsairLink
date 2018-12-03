@@ -53,14 +53,14 @@ hydro_asetek_settings(
     msg_debug( "DEBUG: init done\n" );
 
     /* fetch device name, vendor name, product name */
-    rr = dev->driver->vendor( dev, handle, name, sizeof( name ) );
+    /** rr = dev->driver->vendor( dev, handle, name, sizeof( name ) );
     msg_info( "Vendor: %s\n", name );
     rr = dev->driver->product( dev, handle, name, sizeof( name ) );
     msg_info( "Product: %s\n", name );
     rr = dev->driver->fw_version( dev, handle, name, sizeof( name ) );
     msg_info( "Firmware: %s\n", name );
 
-    /* get number of temperature sensors */
+    // get number of temperature sensors
     rr = dev->driver->temperature.count( dev, handle, &temperature_sensors_count );
 
     for ( ii = 0; ii < temperature_sensors_count; ii++ )
@@ -71,7 +71,7 @@ hydro_asetek_settings(
         msg_machine( "temperature:%d:%5.2f\n", ii, temperature );
     }
 
-    /* read fans info */
+    // read fans info
     rr = dev->driver->fan.count( dev, handle, &readings.fan_ctrl );
     for ( ii = 0; ii < readings.fan_ctrl.fan_count; ii++ )
     {
@@ -90,7 +90,7 @@ hydro_asetek_settings(
             readings.fan_ctrl.max_speed );
     }
 
-    /* read pump info */
+    // read pump info
     rr = dev->driver->pump.profile.read_profile( dev, handle, &readings.pump_ctrl );
     rr = dev->driver->pump.speed( dev, handle, &readings.pump_ctrl );
     msg_info( "Pump:\tMode 0x%02X\n", readings.pump_ctrl.mode );
@@ -98,7 +98,7 @@ hydro_asetek_settings(
         "\tCurrent/Max Speed %i/%i RPM\n", readings.pump_ctrl.speed, readings.pump_ctrl.max_speed );
     msg_machine(
         "pump:%d:%i:%i\n", readings.pump_ctrl.mode, readings.pump_ctrl.speed,
-        readings.pump_ctrl.max_speed );
+        readings.pump_ctrl.max_speed );  */
 
     if ( flags.set_led == 1 )
     {
