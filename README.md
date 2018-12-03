@@ -29,3 +29,10 @@ $ sudo ./GTXH100i_rainbow --device 0
 ```
 
 You should first run https://github.com/audiohacked/OpenCorsairLink in order to find the correct device number
+
+
+## FAQs
+
+### Why isn't this feature present in the CorsairLink Windows software? 
+
+I don't know.
